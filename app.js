@@ -6,8 +6,11 @@ var billete = require("./Billete.js");
 
 var vuelos = new Object;
 
-var server_ip_address = '0.0.0.0';
-app.set('port',5000);
+//var server_ip_address = '0.0.0.0';
+//app.set('port',5000);
+app.set('port', (process.env.PORT || 5000));
+app.use(express.static(__dirname+'/'));
+
 
 app.get('/',function(req,response){
   if(!vuelos){
@@ -54,8 +57,8 @@ app.get('/vuelo/:origen/:destino/:dia/:hora',function(req,response){
   }
 });
 
-app.listen(app.get('port'),server_ip_address,function(){
-  console.log("La aplicación está corriendo en http://"+server_ip_address+":"+app.get('port'));
+app.listen(app.get('port'),function(){
+  console.log("La aplicación está corriendo en el puerto "+app.get('port'));
 });
 
 
