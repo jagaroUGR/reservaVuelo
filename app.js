@@ -9,14 +9,14 @@ var vuelos = new Object;
 var server_ip_address = '0.0.0.0';
 app.set('port',5000);
 
-app.get('/',function(req,response)){
+app.get('/',function(req,response){
   if(!vuelos){
     response.status(200).send("Página inicio de la agencia de vuelos.")
   }
   else{
     response.status(200).send(vuelos);
   }
-}
+});
 
 // forma de crear un nuevo destino
 app.put('/vuelo/:origen/:destino/:dia/:hora', function(req,response) {
