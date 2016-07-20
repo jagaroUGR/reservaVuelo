@@ -34,6 +34,17 @@ app.get('/vuelos',function(req,response){
   response.send(vuelos);
 });
 
+app.get('/vuelo/:origen/:destino/:dia/:hora',function(req,response){
+  var v = new vuelo.Vuelo(req.params.origen,req.params.destino,
+                                    req.params.dia,req.params.hora);
+  var existe = vuelos[v.ID];
+  if(existe){
+    response.status(200).send(existe);
+  }else{
+    response.status(404).send(404);
+  }
+});
+
 app.listen(app.get('port'),server_ip_address,function(){
   console.log("La aplicación está corriendo en http://"+server_ip_address+":"+app.get('port'));
 });

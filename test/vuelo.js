@@ -32,4 +32,13 @@ describe('Gestión de vuelo',function(){
     });
   });
 
+  describe('Existe',function(){
+    it('should show fly',function(done){
+      request(app)
+      .get('/vuelo/alicante/cielo/1/2')
+      .expect('Content-Type',/json/)
+      .expect(200,done);
+    })
+  });
+
 });
